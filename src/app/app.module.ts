@@ -1,27 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatInputModule} from '@angular/material/input';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import {AngularMaterialModules} from './modules/angular-material.modules';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import {RouterModules} from './modules/router.modules';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatProgressSpinnerModule
+    AngularMaterialModules,
+    RouterModules
   ],
   providers: [],
   bootstrap: [AppComponent]

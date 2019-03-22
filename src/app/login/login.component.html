@@ -4,20 +4,22 @@
       <div class="row justify-content-center">
         <div class="col-auto"><h2 style="color: #2C4495">Inventory Manager</h2></div>
       </div>
-      <br>
       <div class="row justify-content-center">
-        <div class="col-auto"><h5 style="color: #2C4495">Sign In</h5></div>
+        <div class="col-auto"><h4 style="color: #2C4495">Sign In</h4></div>
       </div>
+      <br>
       <form class="signin">
-        <mat-form-field class="username">
+        <mat-form-field [style.fontSize.px]="14" appearance="outline" class="username">
+          <mat-label>Enter Your UserName</mat-label>
           <input matInput placeholder="Username">
         </mat-form-field>
 
-        <mat-form-field class="password">
+        <mat-form-field [style.fontSize.px]="14" appearance="outline" class="password">
+          <mat-label>Enter Your Password</mat-label>
           <input matInput  type="password" placeholder="Password">
         </mat-form-field>
-        <div class="row justify-content-between" style="margin-bottom: 75px;">
-          <div class="col-auto align-self-end"><a>Forgot Password?</a></div>
+        <div class="row justify-content-between" style="margin-bottom: 45px;">
+          <div class="col-auto align-self-end forgot-password"><a>Forgot Password?</a></div>
           <div class="col-auto">
             <div class="row justify-content-end">
               <div class="col-auto">
@@ -36,6 +38,15 @@
           </div>
         </div>
       </form>
+      <mat-divider style="margin-bottom: 25px;"></mat-divider>
+      <div class="row justify-content-between">
+        <div class="col-auto align-self-end">
+          <a>Don't have an account?</a>
+        </div>
+        <div class="col-auto">
+          <button mat-raised-button routerLink="/signUp" type="button" style="outline: 0">Create Account</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
