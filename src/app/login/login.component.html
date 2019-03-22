@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row align-items-center justify-content-center" style="height: 100%">
+    <div class="col-auto">
+      <div class="row justify-content-center">
+        <div class="col-auto"><h2 style="color: #2C4495">Inventory Manager</h2></div>
+      </div>
+      <br>
+      <div class="row justify-content-center">
+        <div class="col-auto"><h5 style="color: #2C4495">Sign In</h5></div>
+      </div>
+      <form class="signin">
+        <mat-form-field class="username">
+          <input matInput placeholder="Username">
+        </mat-form-field>
+
+        <mat-form-field class="password">
+          <input matInput  type="password" placeholder="Password">
+        </mat-form-field>
+        <div class="row justify-content-between" style="margin-bottom: 75px;">
+          <div class="col-auto align-self-end"><a>Forgot Password?</a></div>
+          <div class="col-auto">
+            <div class="row justify-content-end">
+              <div class="col-auto">
+                <mat-progress-spinner
+                  class="example-margin"
+                  color="primary"
+                  mode="indeterminate"
+                  value = "50"
+                  diameter = "40"
+                ></mat-progress-spinner>
+              </div>
+              <div class="col-auto">
+                <button mat-raised-button type="button" style="outline: 0" color="primary">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.container {
+  height: 100%;
+}
+.signin {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.username, .password {
+  width: 100%;
+}
