@@ -6,18 +6,22 @@ import { LoginComponent } from './login/login.component';
 import {AngularMaterialModules} from './modules/angular-material.modules';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {RouterModules} from './modules/router.modules';
+import { InventoryComponent } from './inventory/inventory.component';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AngularMaterialModules,
-    RouterModules
+    RouterModules,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

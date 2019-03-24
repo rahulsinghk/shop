@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {MatIconRegistry} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
-  constructor(private router: Router) {}
+  constructor(private router: Router, private matIconRegistry: MatIconRegistry) {}
   ngOnInit() {
-    this.router.navigate(['login']);
+    // this.matIconRegistry.addSvgIcon('thumbs-up', '../assets/svg-icons/baseline-thumb_up-24px.svg' );
+    this.router.navigate(['inventory']).then();
   }
 }

@@ -4,10 +4,10 @@
       <div class="row justify-content-center">
         <div class="col-auto"><h2 style="color: #2C4495">Inventory Manager</h2></div>
       </div>
-      <br>
       <div class="row justify-content-center">
         <div class="col-auto"><h4 style="color: #2C4495">Create Account</h4></div>
       </div>
+      <br>
       <form class="sign-up">
         <div class="row justify-content-between">
           <div class="col-6">
@@ -46,6 +46,15 @@
           <input matInput placeholder="Shop Name">
         </mat-form-field>
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
+          <mat-label>Enter Your Shop Primary Category</mat-label>
+          <mat-select>
+            <mat-option value="Category - 1">Category - 1</mat-option>
+            <mat-option value="Category - 2">Category - 2</mat-option>
+            <mat-option value="Category - 3">Category - 3</mat-option>
+            <mat-option value="Category - 4">Category - 4</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
           <mat-label>Enter Your Shop Address</mat-label>
           <textarea  matInput placeholder="Shop Address"></textarea>
         </mat-form-field>
@@ -62,7 +71,7 @@
                 ></mat-progress-spinner>
               </div>
               <div class="col-auto">
-                <button mat-raised-button type="button" style="outline: 0" color="primary">Create Account</button>
+                <button mat-raised-button type="button" routerLink="/inventory" style="outline: 0" color="primary">Create Account</button>
               </div>
             </div>
           </div>

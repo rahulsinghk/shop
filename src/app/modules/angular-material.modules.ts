@@ -3,23 +3,39 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatDividerModule} from '@angular/material';
+import {MatDividerModule, MatSortModule} from '@angular/material';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
+import {MatTreeModule} from '@angular/material/tree';
+import {MatCardModule} from '@angular/material/card';
+import {MatRippleModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
+const components = [
+  MatInputModule,
+  MatButtonModule,
+  MatGridListModule,
+  MatProgressSpinnerModule,
+  MatDividerModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatMenuModule,
+  MatIconModule,
+  MatSelectModule,
+  MatTreeModule,
+  MatCardModule,
+  MatRippleModule,
+  MatTableModule,
+  MatPaginatorModule,
+  MatSortModule
+];
 
 @NgModule({
-  imports: [
-    MatInputModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatProgressSpinnerModule,
-    MatDividerModule
-  ],
-  exports: [
-    MatInputModule,
-    MatButtonModule,
-    MatGridListModule,
-    MatProgressSpinnerModule,
-    MatDividerModule
-  ]
+  imports: components,
+  exports: components
 })
 export class AngularMaterialModules { }
