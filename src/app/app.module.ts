@@ -8,13 +8,16 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import {RouterModules} from './modules/router.modules';
 import { InventoryComponent } from './inventory/inventory.component';
 import { HttpClientModule} from '@angular/common/http';
+import { AddProductDialogComponent } from './inventory/add-product-dialog/add-product-dialog.component';
+import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignUpComponent,
-    InventoryComponent
+    InventoryComponent,
+    AddProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,12 @@ import { HttpClientModule} from '@angular/common/http';
     RouterModules,
     HttpClientModule
   ],
-  providers: [],
+  entryComponents: [
+    AddProductDialogComponent
+  ],
+  providers: [
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
