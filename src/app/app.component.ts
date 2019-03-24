@@ -11,6 +11,6 @@ export class AppComponent implements OnInit{
   constructor(private router: Router, private matIconRegistry: MatIconRegistry) {}
   ngOnInit() {
     // this.matIconRegistry.addSvgIcon('thumbs-up', '../assets/svg-icons/baseline-thumb_up-24px.svg' );
-    this.router.navigate(['inventory']).then();
+    this.router.navigate(['login']).then();
   }
 }
