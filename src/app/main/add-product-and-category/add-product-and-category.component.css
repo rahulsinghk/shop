@@ -1,0 +1,19 @@
+[class*="col-"] {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+mat-chip {
+  background-color: white !important;
+  cursor: pointer;
+  padding: 10px;
+}
+.chip-arrow{
+  padding: 0;
+}
+.mat-chip.mat-standard-chip::after {
+   background: white !important;
+}
+.category-card{
+  cursor: pointer;
+  padding: 0;
+}

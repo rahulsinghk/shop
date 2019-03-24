@@ -27,6 +27,4 @@ button{
 ::-webkit-scrollbar-thumb:hover {
   background: #AAA;
 }
-.mat-tree-node {
-  min-height: 10px !important;
-}
+

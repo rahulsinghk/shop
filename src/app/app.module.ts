@@ -6,10 +6,13 @@ import { LoginComponent } from './login/login.component';
 import {AngularMaterialModules} from './modules/angular-material.modules';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import {RouterModules} from './modules/router.modules';
-import { InventoryComponent } from './inventory/inventory.component';
 import { HttpClientModule} from '@angular/common/http';
-import { AddProductDialogComponent } from './inventory/add-product-dialog/add-product-dialog.component';
 import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
+import { MainComponent } from './main/main.component';
+import {AddProductDialogComponent} from './main/inventory/add-product-dialog/add-product-dialog.component';
+import {InventoryComponent} from './main/inventory/inventory.component';
+import {AddProductAndCategoryComponent} from './main/add-product-and-category/add-product-and-category.component';
+import {DataService} from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
     LoginComponent,
     SignUpComponent,
     InventoryComponent,
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    AddProductAndCategoryComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -30,6 +35,7 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
     AddProductDialogComponent
   ],
   providers: [
+    DataService,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}}
   ],
   bootstrap: [AppComponent]

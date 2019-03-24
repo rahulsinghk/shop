@@ -1,0 +1,39 @@
+<div class="row" style="padding-top: 3.5em; height: 100%; width: 100%; margin: 0;">
+  <div class="col" style="background-color: #F8F8F8; overflow: auto;">
+    <div class="container" style="padding: 10px" >
+      <div class="row">
+        <div class="col">
+          <mat-card>
+            <mat-chip-list>
+              <mat-chip (click) = "onReset()">All Category</mat-chip>
+              <ng-container *ngFor="let item of this.breadCrum; let index = index">
+                <mat-chip disabled class="chip-arrow"><mat-icon>arrow_forward_ios</mat-icon></mat-chip>
+                <mat-chip (click)="onJump(index)">{{item.name}}</mat-chip>
+              </ng-container>
+            </mat-chip-list>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-sx-12">
+          <mat-card class="category-card">
+            <div matRipple style="padding: 16px; border-radius: 4px">
+              <mat-card-title><mat-icon inline="true" style="font-size: 20px;">add_circle</mat-icon> Item</mat-card-title>
+              <mat-card-content>Simple</mat-card-content>
+            </div>
+          </mat-card>
+        </div>
+        <ng-container *ngFor="let item of this.data; let index  = index">
+          <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-sx-12">
+            <mat-card (click)="onSelect(index)" class="category-card">
+              <div matRipple style="padding: 16px; border-radius: 4px">
+                <mat-card-title>{{item.name}}</mat-card-title>
+                <mat-card-content>Simple</mat-card-content>
+              </div>
+            </mat-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
