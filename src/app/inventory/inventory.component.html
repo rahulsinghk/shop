@@ -12,7 +12,7 @@
       </button>
       <mat-menu #options="matMenu">
         <button mat-menu-item><mat-icon>account_circle</mat-icon>Account</button>
-        <button mat-menu-item><mat-icon>exit_to_app</mat-icon>Log Out</button>
+        <button mat-menu-item (click)="onLogout()"><mat-icon>exit_to_app</mat-icon>Log Out</button>
       </mat-menu>
     </div>
   </div>

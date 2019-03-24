@@ -3,6 +3,7 @@ import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog.component';
+import { Router} from '@angular/router';
 interface FoodNode {
   name: string;
   children?: FoodNode[];
@@ -67,7 +68,7 @@ export class InventoryComponent implements OnInit {
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private router: Router) {
     this.dataSource.data = TREE_DATA;
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
 
@@ -76,7 +77,6 @@ export class InventoryComponent implements OnInit {
   }
 
   //dialog
-
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
       width: '250px',
@@ -89,6 +89,9 @@ export class InventoryComponent implements OnInit {
     });
   }
 
+  onLogout() {
+    this.router.navigate(['login']).then();
+  }
 
   ngOnInit() {
     this.data.paginator = this.paginator;
