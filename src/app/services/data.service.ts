@@ -5,79 +5,58 @@ import {Injectable} from '@angular/core';
 export class DataService {
    data = [
     {
-      name: 'Fruit',
+      name: 'Food',
       children: [
-        {name: 'Apple'},
-        {name: 'Banana'},
-        {name: 'Fruit loops'},
+        {name: 'Fast Food',
+        children: [
+          {
+            name: 'Potato Chips',
+            children: [
+              {
+                name: 'Garlic'
+              }
+            ]
+          }
+        ]},
       ]
     }, {
-      name: 'Vegetables',
+      name: 'Medical',
       children: [
         {
-          name: 'Green',
+          name: 'Medicines',
           children: [
-            {name: 'Broccoli'},
-            {name: 'Brussel sprouts'},
-          ]
-        }, {
-          name: 'Orange',
-          children: [
-            {name: 'Pumpkins'},
-            {name: 'Carrots'},
+            {name: 'Headache',
+              children: [
+                {
+                  name: 'Upper Head',
+                  children: [
+                    {
+                      name: 'Migraine'
+                    }
+                  ]
+                }
+              ]
+
+            },
+            {name: 'Lower Head'},
           ]
         },
       ]
     },
      {
-       name: 'Fruit',
+       name: 'Musical Instruments',
        children: [
-         {name: 'Apple'},
-         {name: 'Banana'},
-         {name: 'Fruit loops'},
-       ]
-     }, {
-       name: 'Vegetables',
-       children: [
-         {
-           name: 'Green',
-           children: [
-             {name: 'Broccoli'},
-             {name: 'Brussel sprouts'},
-           ]
-         }, {
-           name: 'Orange',
-           children: [
-             {name: 'Pumpkins'},
-             {name: 'Carrots'},
-           ]
-         },
+         {name: 'Acoustic',
+         children:[
+           {
+             name: 'Drums',
+           },
+           {
+             name: 'Guitar'
+           }
+         ]},
        ]
      },
-     {
-       name: 'Fruit',
-       children: [
-         {name: 'Apple'},
-         {name: 'Banana'},
-         {name: 'Fruit loops'},
-       ]
-     }, {
-       name: 'Vegetables',
-       children: [
-         {
-           name: 'Green',
-           children: [
-             {name: 'Broccoli'},
-             {name: 'Brussel sprouts'},
-           ]
-         }, {
-           name: 'Orange',
-           children: [
-             {name: 'Pumpkins'},
-             {name: 'Carrots'},
-           ]
-         },
-       ]
-     },
+
   ];
 }

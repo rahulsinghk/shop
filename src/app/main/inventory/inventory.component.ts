@@ -22,7 +22,7 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
   'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
 
-const TREE_DATA: FoodNode[] = [
+let TREE_DATA: FoodNode[] = [
   {
     name: 'Fruit',
     children: [
