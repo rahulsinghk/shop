@@ -13,6 +13,7 @@ import {AddProductDialogComponent} from './main/inventory/add-product-dialog/add
 import {InventoryComponent} from './main/inventory/inventory.component';
 import {AddProductAndCategoryComponent} from './main/add-product-and-category/add-product-and-category.component';
 import {DataService} from './services/data.service';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {DataService} from './services/data.service';
     BrowserAnimationsModule,
     AngularMaterialModules,
     RouterModules,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   entryComponents: [
     AddProductDialogComponent

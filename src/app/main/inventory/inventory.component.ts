@@ -22,33 +22,7 @@ const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
   'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
 
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [
-      {name: 'Apple'},
-      {name: 'Banana'},
-      {name: 'Fruit loops'},
-    ]
-  }, {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [
-          {name: 'Broccoli'},
-          {name: 'Brussel sprouts'},
-        ]
-      }, {
-        name: 'Orange',
-        children: [
-          {name: 'Pumpkins'},
-          {name: 'Carrots'},
-        ]
-      },
-    ]
-  },
-];
+let TREE_DATA: FoodNode[];
 
 @Component({
   selector: 'app-inventory',
@@ -73,7 +47,7 @@ export class InventoryComponent implements OnInit {
     TREE_DATA = this.dataService.data;
     this.dataSource.data = TREE_DATA;
     const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-
+    // console.log(users);
     // Assign the data to the data source for the table to render
     this.data = new MatTableDataSource(users);
   }

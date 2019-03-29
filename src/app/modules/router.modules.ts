@@ -10,7 +10,7 @@ import {AddProductAndCategoryComponent} from '../main/add-product-and-category/a
 
 export const appRoute: Routes = [
   {path: '', component: AppComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'logIn', component: LoginComponent},
   {path: 'signUp', component: SignUpComponent},
   {path: 'main', component: MainComponent, children: [
       {path: 'inventory', component: InventoryComponent},
