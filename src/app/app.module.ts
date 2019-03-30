@@ -14,6 +14,9 @@ import {InventoryComponent} from './main/inventory/inventory.component';
 import {AddProductAndCategoryComponent} from './main/add-product-and-category/add-product-and-category.component';
 import {DataService} from './services/data.service';
 import {FormsModule} from '@angular/forms';
+import {ValidationServices} from './services/validation.services';
+import {NotExistValidationDirective} from './directives/not-exist-validation.directive';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import {FormsModule} from '@angular/forms';
     InventoryComponent,
     AddProductDialogComponent,
     AddProductAndCategoryComponent,
-    MainComponent
+    MainComponent,
+    NotExistValidationDirective
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ import {FormsModule} from '@angular/forms';
   ],
   providers: [
     DataService,
+    ValidationServices,
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}}
   ],
   bootstrap: [AppComponent]

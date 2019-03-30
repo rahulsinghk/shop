@@ -24,4 +24,7 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+  onView(loginForm: NgForm) {
+    console.log(loginForm);
+  }
 }

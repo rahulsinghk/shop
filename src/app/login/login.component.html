@@ -11,14 +11,18 @@
       <form id="login" class="signin" #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="username">
           <mat-label>Enter Your UserName</mat-label>
-          <input matInput ngModel placeholder="Username" name="username" required>
+          <input matInput ngModel placeholder="Username" #username="ngModel" name="username" required>
           <mat-icon matSuffix>account_circle</mat-icon>
           <mat-error>Username is required</mat-error>
         </mat-form-field>
 
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="password">
           <mat-label>Enter Your Password</mat-label>
-          <input matInput ngModel #password="ngModel" [type]="!hide ? 'password' : 'text'" placeholder="Password" name="password" required minlength="2">
+          <input matInput ngModel
+                 [appNotExist]="{username: username.value, password: password.value}"
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 #password="ngModel" [type]="!hide ? 'password' : 'text'"
+                 placeholder="Password" name="password" required minlength="2">
           <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
           <mat-error *ngIf="password.hasError('required')" >Password is required</mat-error>
@@ -30,6 +34,7 @@
             <div class="row justify-content-end">
               <div class="col-auto">
                 <mat-progress-spinner
+                  *ngIf="loginForm.pending"
                   class="example-margin"
                   color="primary"
                   mode="indeterminate"
@@ -39,7 +44,12 @@
               </div>
               <div class="col-auto">
                 <button mat-raised-button color="primary" >Submit</button>
+                <!--<button mat-raised-button type="button" color="primary" >View Form</button>-->
               </div>
+              <div class="col-auto">
+              <!--<button mat-raised-button color="primary" >Submit</button>-->
+              <button mat-raised-button type="button" (click)="onView(loginForm)" color="primary" >View Form</button>
+            </div>
             </div>
           </div>
         </div>
