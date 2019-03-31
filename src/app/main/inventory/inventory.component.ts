@@ -32,7 +32,7 @@ let TREE_DATA: FoodNode[];
 export class InventoryComponent implements OnInit {
   animal: string;
   name: string;
-
+  private shop_details;
 
   displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
   data: MatTableDataSource<UserData>;
@@ -66,6 +66,7 @@ export class InventoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.shop_details = this.dataService.shop_details;
     this.data.paginator = this.paginator;
     this.data.sort = this.sort;
   }

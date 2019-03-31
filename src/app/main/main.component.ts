@@ -12,9 +12,9 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.navigate(['main/addProduct']).then();
+    this.router.navigate(['main/inventory']).then();
   }
   onLogout() {
-    this.router.navigate(['login']).then();
+    this.router.navigate(['logIn']).then();
   }
 }

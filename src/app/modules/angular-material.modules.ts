@@ -17,6 +17,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatListModule} from '@angular/material/list';
 
 const components = [
   MatInputModule,
@@ -37,7 +38,8 @@ const components = [
   MatSortModule,
   MatTabsModule,
   MatDialogModule,
-  MatChipsModule
+  MatChipsModule,
+  MatListModule
 ];
 
 @NgModule({

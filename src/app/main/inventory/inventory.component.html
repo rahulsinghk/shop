@@ -1,7 +1,7 @@
 <div class="row main">
   <div class="col main">
     <mat-sidenav-container autosize>
-      <mat-sidenav mode="side" opened>
+      <mat-sidenav mode="side" opened style="min-width: 250px;">
           <div style="padding: 10px; margin-right: 26px; max-width: 300%" >
             <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
               <!-- This is the tree node template for leaf nodes -->
@@ -49,22 +49,71 @@
                       <div class="container">
                         <div class="row">
                           <div class="col">
-                            <mat-card-title>Shop Details</mat-card-title>
-                            <mat-card-subtitle>Name Of The Shop</mat-card-subtitle>
+                            <mat-card-title>{{shop_details.data.shop_name}}</mat-card-title>
+                            <mat-card-subtitle>{{shop_details.data.type_name}}</mat-card-subtitle>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
                             <mat-tab-group dynamicHeight>
-                              <mat-tab label="Short tab">
-                                <div class="example-small-box mat-elevation-z4">
-                                  Small content
+                              <mat-tab label="Details">
+                              <div class="row">
+                                <div class="col-6">
+                                  <mat-list>
+                                    <!--<h3 matSubheader>Folders</h3>-->
+                                    <mat-list-item mat-ripple>
+                                      <h1 matLine>{{shop_details.data.shopkeeper_name}}</h1>
+                                      <p matLine class="text-muted" style="font-size: small">Name</p>
+                                    </mat-list-item>
+                                    <mat-divider [inset]="true"></mat-divider>
+                                    <mat-list-item mat-ripple>
+                                      <h1 matLine >{{shop_details.data.shopkeeper_email}} </h1>
+                                      <p matLine class="text-muted" style="font-size: small">Email</p>
+                                    </mat-list-item>
+                                    <mat-divider [inset]="true"></mat-divider>
+                                    <mat-list-item mat-ripple>
+                                      <h1 matLine >{{shop_details.data.shopkeeper_contact}}</h1>
+                                      <p matLine class="text-muted" style="font-size: small">Phone</p>
+                                    </mat-list-item>
+                                  </mat-list>
                                 </div>
+                                <div class="col-6">
+                                  <mat-list>
+                                    <!--<h3 matSubheader>Folders</h3>-->
+                                    <mat-list-item mat-ripple>
+                                      <h1 matLine > {{shop_details.data.shopkeeper_username}} </h1>
+                                      <p matLine class="text-muted" style="font-size: small">Username</p>
+                                    </mat-list-item>
+                                    <mat-divider [inset]="true"></mat-divider>
+                                    <mat-list-item mat-ripple style="padding-top: 16px; padding-bottom: 16px;  height: auto;">
+                                      <h1 matLine style="word-wrap: normal;"> Address </h1>
+                                      <p matLine class="text-muted" style="font-size: small; white-space: normal; ">
+                                        {{shop_details.data.shop_location}}
+                                      </p>
+                                    </mat-list-item>
+
+                                  </mat-list>
+                                </div>
+                              </div>
+
+                                <!--<div class="example-small-box mat-elevation-z4">-->
+                                  <!--Small content-->
+                                <!--</div>-->
                               </mat-tab>
-                              <mat-tab label="Long tab">
-                                <div class="example-large-box mat-elevation-z4">
-                                  Large content
-                                </div>
+                              <mat-tab label="Description">
+                                <mat-list>
+                                  <!--<h3 matSubheader>Folders</h3>-->
+                                  <mat-list-item mat-ripple style="padding-top: 16px; padding-bottom: 16px;  height: auto;">
+                                    <h1 matLine style="word-wrap: normal;"> Description </h1>
+                                    <p matLine class="text-muted" style="font-size: small; white-space: normal; ">
+                                      {{shop_details.data.shop_description}}
+                                    </p>
+                                  </mat-list-item>
+
+                                </mat-list>
+                                <!--<div class="example-large-box mat-elevation-z4">-->
+                                  <!--Large content-->
+                                <!--</div>-->
                               </mat-tab>
                             </mat-tab-group>
                           </div>
