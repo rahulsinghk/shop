@@ -7,18 +7,24 @@ import {catchError, map} from 'rxjs/operators';
 
 // noinspection JSAnnotator
 @Directive({
-  selector: '[appNotExist]',
+  selector: '[appAsyncLoginPasswordValidation]',
   providers: [{
     provide: NG_ASYNC_VALIDATORS,
-    useExisting: NotExistValidationDirective,
+    useExisting: LoginPasswordValidationDirective,
     multi: true
   }]
 })
-export class NotExistValidationDirective implements AsyncValidator {
+export class LoginPasswordValidationDirective implements AsyncValidator {
   constructor(private validationServices: ValidationServices) {}
-  @Input() appNotExist: {username: string, password: string};
+
+  // @Input() appNotExist: {username: string, password: string};
+
   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return  this.validationServices.isPasswordCorrect(this.appNotExist.username, this.appNotExist.password);
+    // console.log(control.value);
+    return  this.validationServices.loginPasswordValidation(control.parent.value.username, control.value).pipe(
+      map(isTaken => (isTaken['password'] ? { password: isTaken['message'] } : null)),
+      catchError(() => null)
+    );
   }
 
 }

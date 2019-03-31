@@ -15,7 +15,12 @@ import {AddProductAndCategoryComponent} from './main/add-product-and-category/ad
 import {DataService} from './services/data.service';
 import {FormsModule} from '@angular/forms';
 import {ValidationServices} from './services/validation.services';
-import {NotExistValidationDirective} from './directives/not-exist-validation.directive';
+import {LoginUsernameValidationDirective} from './directives/login-username-validation.directive';
+import {LoginPasswordValidationDirective} from './directives/login-password-validation.directive';
+import {SignupEmailValidationDirective} from './directives/signup-email-validation.directive';
+import {SignupShopNameValidationDirective} from './directives/signup-shop-name-validation.directive';
+import {SignupUsernameValidationDirective} from './directives/signup-username-validation.directive';
+import {SignupEqualPasswordValidationDirective} from './directives/signup-equal-password-validation.directive';
 
 
 @NgModule({
@@ -27,7 +32,12 @@ import {NotExistValidationDirective} from './directives/not-exist-validation.dir
     AddProductDialogComponent,
     AddProductAndCategoryComponent,
     MainComponent,
-    NotExistValidationDirective
+    LoginPasswordValidationDirective,
+    LoginUsernameValidationDirective,
+    SignupUsernameValidationDirective,
+    SignupShopNameValidationDirective,
+    SignupEmailValidationDirective,
+    SignupEqualPasswordValidationDirective
   ],
   imports: [
     BrowserModule,

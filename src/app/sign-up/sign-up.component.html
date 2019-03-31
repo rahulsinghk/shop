@@ -8,55 +8,67 @@
         <div class="col-auto"><h4 style="color: #2C4495">Create Account</h4></div>
       </div>
       <br>
-      <form class="sign-up">
+      <form class="sign-up" #signupForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="row justify-content-between">
           <div class="col-6">
             <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
               <mat-label>Enter Name</mat-label>
-              <input matInput placeholder="Name">
+              <input ngModel #name="ngModel" matInput placeholder="Name" name="name" required>
+              <mat-error *ngIf="name.hasError('required')">Name Is Required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-6">
             <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
               <mat-label>Choose User Name</mat-label>
-              <input matInput placeholder="Username">
+              <input ngModel matInput #username="ngModel" [ngModelOptions]="{updateOn: 'blur'}" appAsyncSignupUsernameValidation placeholder="Username" name="username" required>
+              <mat-error *ngIf="username.hasError('required')">Username Is Required</mat-error>
+              <mat-error *ngIf="username.hasError('username')">{{username.getError('username')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
           <mat-label>Enter Email Address</mat-label>
-          <input matInput type="email" placeholder="Email">
+          <input ngModel matInput appAsyncSignupEmailValidation [ngModelOptions]="{updateOn: 'blur'}" #email = "ngModel" type="email" placeholder="Email" name="email" required>
+          <mat-error *ngIf="email.hasError('required')">Email Is Required</mat-error>
+          <mat-error *ngIf="email.hasError('email')">{{email.getError('email')}}</mat-error>
         </mat-form-field>
         <div class="row justify-content-between">
           <div class="col-6">
             <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
               <mat-label>Choose Password</mat-label>
-              <input matInput type="password" placeholder="Password">
+              <input ngModel matInput #password="ngModel" type="password" placeholder="Password" name="password" required>
+              <mat-error *ngIf="password.hasError('required')">Password Is Required</mat-error>
             </mat-form-field>
           </div>
           <div class="col-6">
             <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
               <mat-label>Re Enter Password</mat-label>
-              <input matInput type="password" placeholder="Re-type Password">
+              <input ngModel matInput appSignupEqualPasswordValidation [ngModelOptions]="{updateOn: 'blur'}" #rePassword="ngModel" type="password" placeholder="Re-type Password" name="repassword" required>
+              <mat-error *ngIf="rePassword.hasError('required')">Please Re type the Password</mat-error>
+              <mat-error *ngIf="rePassword.hasError('password')">{{rePassword.getError('password')}}</mat-error>
             </mat-form-field>
           </div>
         </div>
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
           <mat-label>Enter Your Shop Name</mat-label>
-          <input matInput placeholder="Shop Name">
+          <input ngModel matInput #shopName="ngModel" [ngModelOptions]="{updateOn: 'blur'}" appAsyncSignupShopNameValidation placeholder="Shop Name" name="shopName" required>
+          <mat-error *ngIf="shopName.hasError('required')">Shop Name Is Required</mat-error>
+          <mat-error *ngIf="shopName.hasError('shopName')">{{shopName.getError('shopName')}}</mat-error>
         </mat-form-field>
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
           <mat-label>Enter Your Shop Primary Category</mat-label>
-          <mat-select>
+          <mat-select ngModel name="shopType" #shopType = "ngModel" required>
             <mat-option value="Category - 1">Category - 1</mat-option>
             <mat-option value="Category - 2">Category - 2</mat-option>
             <mat-option value="Category - 3">Category - 3</mat-option>
             <mat-option value="Category - 4">Category - 4</mat-option>
           </mat-select>
+          <mat-error *ngIf="shopType.hasError('required')">Shop Type Is Required</mat-error>
         </mat-form-field>
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="field">
           <mat-label>Enter Your Shop Address</mat-label>
-          <textarea  matInput placeholder="Shop Address"></textarea>
+          <textarea ngModel #shopAddress="ngModel" matInput placeholder="Shop Address" name="shopAddress" required></textarea>
+          <mat-error *ngIf="shopAddress.hasError('required')">Shop Address Is Required</mat-error>
         </mat-form-field>
         <div class="row justify-content-end">
           <div class="col-auto">
@@ -71,7 +83,7 @@
                 ></mat-progress-spinner>
               </div>
               <div class="col-auto">
-                <button mat-raised-button type="button" routerLink="/login" style="outline: 0" color="primary">Create Account</button>
+                <button mat-raised-button type="submit" routerLink="/login" style="outline: 0" color="primary">Create Account</button>
               </div>
             </div>
           </div>

@@ -11,22 +11,24 @@
       <form id="login" class="signin" #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="username">
           <mat-label>Enter Your UserName</mat-label>
-          <input matInput ngModel placeholder="Username" #username="ngModel" name="username" required>
+          <input matInput ngModel appAsyncLoginUsernameValidation
+                 [ngModelOptions]="{updateOn: 'blur'}"
+                 placeholder="Username" #username="ngModel" name="username" required>
           <mat-icon matSuffix>account_circle</mat-icon>
-          <mat-error>Username is required</mat-error>
+          <mat-error *ngIf="username.hasError('required')">Username is required</mat-error>
+          <mat-error *ngIf="username.hasError('username')">{{username.getError('username')}}</mat-error>
         </mat-form-field>
 
         <mat-form-field [style.fontSize.px]="14" appearance="outline" class="password">
           <mat-label>Enter Your Password</mat-label>
-          <input matInput ngModel
-                 [appNotExist]="{username: username.value, password: password.value}"
-                 [ngModelOptions]="{updateOn: 'blur'}"
+          <input matInput ngModel appAsyncLoginPasswordValidation [ngModelOptions]="{updateOn: 'blur'}"
                  #password="ngModel" [type]="!hide ? 'password' : 'text'"
                  placeholder="Password" name="password" required minlength="2">
           <button mat-icon-button matSuffix type="button" (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
           <mat-error *ngIf="password.hasError('required')" >Password is required</mat-error>
-          <mat-error *ngIf="password.hasError('minlength')">Password should be of 6 length</mat-error>
+          <mat-error *ngIf="password.hasError('minlength')">Password should be of 2 length</mat-error>
+          <mat-error *ngIf="password.hasError('password')">{{password.getError('password')}}</mat-error>
         </mat-form-field>
         <div class="row justify-content-between" style="margin-bottom: 45px;">
           <div class="col-auto align-self-end forgot-password"><a>Forgot Password?</a></div>
@@ -46,10 +48,6 @@
                 <button mat-raised-button color="primary" >Submit</button>
                 <!--<button mat-raised-button type="button" color="primary" >View Form</button>-->
               </div>
-              <div class="col-auto">
-              <!--<button mat-raised-button color="primary" >Submit</button>-->
-              <button mat-raised-button type="button" (click)="onView(loginForm)" color="primary" >View Form</button>
-            </div>
             </div>
           </div>
         </div>

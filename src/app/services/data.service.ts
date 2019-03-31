@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class DataService {
-   data = [
+   public data = [
      {
        'name': 'Musical Instrument',
        'children': [
@@ -210,4 +210,8 @@ export class DataService {
        ]
      }
    ];
+   public shopkeeper_details;
+   constructor() {
+     this.shopkeeper_details = null;
+   }
 }
