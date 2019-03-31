@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
         .subscribe((response) => {
         console.log(response);
         this.dataService.shop_details = response;
-        this.httpClient.post('http://localhost/php/api/product_by_shop_details.php', {shop_id: response.data.shop_id})
+        this.httpClient.post('http://localhost/php/api/product_by_shop_details.php', {shop_id: response['data'].shop_id})
           .subscribe(res => {
             console.log(res);
             this.dataService.data = res;

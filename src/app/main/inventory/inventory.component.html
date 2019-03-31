@@ -9,7 +9,7 @@
                 <li>
                   <!-- use a disabled button to provide padding for tree leaf -->
                   <!--<button mat-icon-button disabled></button>-->
-                  <button mat-button><mat-icon>last_page</mat-icon> {{node.name}}</button>
+                  <button mat-button (click)="onClickLeaf(node)"><mat-icon>last_page</mat-icon> {{node.name}}</button>
                 </li>
               </mat-nested-tree-node>
               <!-- This is the tree node template for expandable nodes -->
@@ -150,26 +150,30 @@
 
                         <!-- ID Column -->
                         <ng-container matColumnDef="id">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header><span style="font-size: 1.5em;">ID</span></th>
-                          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"><span style="font-size: 1.5em;">ID</span></th>
+                          <td mat-cell *matCellDef="let row" style="width: 10%;"> {{row.product_id}} </td>
                         </ng-container>
 
                         <!-- Progress Column -->
-                        <ng-container matColumnDef="progress">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header> <span style="font-size: 1.5em;">Progress</span> </th>
-                          <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 60%;"> <span style="font-size: 1.5em;">Name</span> </th>
+                          <td mat-cell *matCellDef="let row" style="width: 60%;"> {{row.product_name}} </td>
                         </ng-container>
 
                         <!-- Name Column -->
-                        <ng-container matColumnDef="name">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header> <span style="font-size: 1.5em;">Name</span> </th>
-                          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                        <ng-container matColumnDef="price">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> <span style="font-size: 1.5em;">Price</span> </th>
+                          <td mat-cell *matCellDef="let row" style="width: 10%;"> {{row.product_price}} </td>
                         </ng-container>
 
                         <!-- Color Column -->
-                        <ng-container matColumnDef="color">
-                          <th mat-header-cell *matHeaderCellDef mat-sort-header> <span style="font-size: 1.5em;">Color</span> </th>
-                          <td mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </td>
+                        <ng-container matColumnDef="brand">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 10%;"> <span style="font-size: 1.5em;">Brand</span> </th>
+                          <td mat-cell *matCellDef="let row" style="width: 10%;"> {{row.product_brand}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="action">
+                          <th mat-header-cell *matHeaderCellDef style="width: 10%;"> <span style="font-size: 1.5em;">Action</span> </th>
+                          <td mat-cell *matCellDef="let row" style="width: 10%;"><button mat-button>Button</button></td>
                         </ng-container>
 
                         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

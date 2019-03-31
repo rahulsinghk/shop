@@ -10,10 +10,10 @@ interface FoodNode {
   children?: FoodNode[];
 }
 export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
+  product_id: number;
+  product_name: string;
+  product_price: number;
+  product_brand: string;
 }
 const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
   'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
@@ -34,7 +34,7 @@ export class InventoryComponent implements OnInit {
   name: string;
   private shop_details;
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'brand', 'action'];
   data: MatTableDataSource<UserData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -46,13 +46,15 @@ export class InventoryComponent implements OnInit {
   constructor(public dialog: MatDialog, private router: Router, private dataService: DataService) {
     TREE_DATA = this.dataService.data;
     this.dataSource.data = TREE_DATA;
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-    // console.log(users);
+    // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+   const users = [
+
+    ];
     // Assign the data to the data source for the table to render
     this.data = new MatTableDataSource(users);
   }
 
-  //dialog
+  // dialog
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
       width: '250px',
@@ -78,16 +80,19 @@ export class InventoryComponent implements OnInit {
     }
   }
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  onClickLeaf(node) {
+    this.data = new MatTableDataSource(node.products);
+  }
 }
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}
+// function createNewUser(id: number): UserData {
+//   const name =
+//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
+//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
+//
+//   return {
+//     id: id.toString(),
+//     name: name,
+//     progress: Math.round(Math.random() * 100).toString(),
+//     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
+//   };
+// }
