@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog.component';
 import { Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
@@ -15,12 +15,6 @@ export interface UserData {
   product_price: number;
   product_brand: string;
 }
-const COLORS: string[] = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES: string[] = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
 
 let TREE_DATA: FoodNode[];
 
@@ -39,6 +33,7 @@ export class InventoryComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<UserData>;
 
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
@@ -82,6 +77,8 @@ export class InventoryComponent implements OnInit {
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
   onClickLeaf(node) {
     this.data = new MatTableDataSource(node.products);
+    this.table.renderRows();
+    // console.log(this.table);
   }
 }
 // function createNewUser(id: number): UserData {

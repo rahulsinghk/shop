@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 
 @Injectable()
 export class DataService {
    public data;
+  public allProductDetails;
    public shop_details;
-   constructor() {
+   constructor(private httpClient: HttpClient) {
      this.shop_details = {
        code: -1,
        data: {
@@ -232,5 +234,11 @@ export class DataService {
          ]
        }
      ];
+     this.httpClient.get('http://localhost/php/api/all_product_details.php').subscribe(response => {
+       this.allProductDetails = response;
+     }, error => {
+       console.log(error);
+       this.allProductDetails = [];
+     });
    }
 }

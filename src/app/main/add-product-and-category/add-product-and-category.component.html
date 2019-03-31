@@ -14,7 +14,47 @@
           </mat-card>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="products.length">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-sx-12">
+          <mat-card matRipple style="min-height: 650px; max-height: 650px; background-color: #D9D9D9">
+
+              <mat-card-title><mat-icon inline="true" style="font-size: 20px;">add_circle</mat-icon> Item</mat-card-title>
+              <mat-card-content>Simple</mat-card-content>
+
+          </mat-card>
+        </div>
+        <div class=" col-lg-4 col-md-6 col-sm-12 col-sx-12" *ngFor="let product of products">
+          <mat-card style="min-height: 650px; max-height: 650px;">
+            <mat-card-header>
+              <mat-card-title>{{product.product_brand}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content style="margin-top: 0; font-size: large; margin-bottom: 0; max-height: 50px; min-height: 50px; overflow: hidden;">
+              <p class="text-muted">
+               {{product.product_name}}
+
+              </p>
+            </mat-card-content>
+            <mat-card-title style="margin-top: 0; margin-bottom: 0;">&#8377; {{product.product_price}}</mat-card-title>
+            <mat-card-subtitle>&#8377; 200 off</mat-card-subtitle>
+            <mat-card-content style="max-height: 104px; min-height: 104px; overflow: auto;">
+              <p style="margin-right: 4px;">
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                bred for hunting.
+              </p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="onAdd('product 1')">ADD</button>
+              <button mat-button>REMOVE</button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row" *ngIf="this.data.length">
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-sx-12">
           <mat-card class="category-card">
             <div matRipple style="padding: 16px; border-radius: 4px; background-color: #D9D9D9">

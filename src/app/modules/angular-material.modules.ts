@@ -18,6 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatListModule} from '@angular/material/list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const components = [
   MatInputModule,
@@ -39,7 +40,8 @@ const components = [
   MatTabsModule,
   MatDialogModule,
   MatChipsModule,
-  MatListModule
+  MatListModule,
+  MatSnackBarModule
 ];
 
 @NgModule({
