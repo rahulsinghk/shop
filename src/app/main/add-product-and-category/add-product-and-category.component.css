@@ -17,3 +17,8 @@ mat-chip {
   cursor: pointer;
   padding: 0;
 }
+.header{
+  height: 2.5em;
+  z-index: 50;
+  position: fixed;
+}
