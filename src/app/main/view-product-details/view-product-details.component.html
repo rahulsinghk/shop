@@ -1,0 +1,108 @@
+<div style="margin: 0; position: absolute; bottom: 0; left: 0; right: 0; top: 3.5em; overflow: auto; background-color: #F8F8F8; padding-top: 5px;">
+    <div class="container">
+      <div class="row">
+        <div class="col" style="margin-bottom: 10px;">
+          <mat-card>
+            <div class="row">
+              <div class="col-6">
+                <div>
+                  <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="float: left; width: 100%; height: 100%;">
+                </div>
+              </div>
+              <div class="col-6">
+                  <mat-card-title >{{viewProduct.product_brand}}</mat-card-title>
+
+                <mat-card-content>
+                  <p class="text-muted">
+                    {{viewProduct.product_name}}
+
+                  </p>
+                </mat-card-content>
+                <mat-card-title style="margin-top: 0; margin-bottom: 0;">&#8377; {{viewProduct.product_price}}</mat-card-title>
+                <mat-card-subtitle>&#8377; 200 off</mat-card-subtitle>
+                <mat-card-content>
+                  <p style="margin-right: 4px;">
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                    A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                    bred for hunting.
+                  </p>
+                </mat-card-content>
+
+
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom: 10px;">
+        <div class="col">
+
+            <div class="row">
+              <div class="col">
+                <mat-accordion>
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Personal data
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row">
+                      <div class="col">
+                        <mat-divider></mat-divider>
+                        <div class="row justify-content-center align-items-center" matRipple style="padding: 16px;">
+                          <div class="col-6">
+                            <span>ldzfj</span>
+                          </div>
+                          <div class="col-6">
+                            <span>dfkdg</span>
+                          </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="row justify-content-center align-items-center" matRipple style="padding: 16px;">
+                          <div class="col-6">
+                            <span>ldzfj</span>
+                          </div>
+                          <div class="col-6">
+                            <span>dfkdg</span>
+                          </div>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <div class="row justify-content-center align-items-center" matRipple style="padding: 16px;">
+                          <div class="col-6">
+                            <span>ldzfj</span>
+                          </div>
+                          <div class="col-6">
+                            <span>dfkdg</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </mat-expansion-panel>
+                  <mat-expansion-panel (opened)="panelOpenState = true"
+                                       (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        Self aware panel
+                      </mat-panel-title>
+                      <mat-panel-description>
+                        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p>I'm visible because I am open</p>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </div>
+
+        </div>
+      </div>
+
+    </div>
+
+</div>
+
+

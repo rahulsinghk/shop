@@ -4,10 +4,11 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class DataService {
-   public data;
-  public allProductDetails;
-   public shop_details;
-   constructor(private httpClient: HttpClient) {
+    public data;
+    public allProductDetails;
+    public shop_details;
+    public viewProduct;
+    constructor(private httpClient: HttpClient) {
      this.shop_details = {
        code: -1,
        data: {
@@ -240,5 +241,14 @@ export class DataService {
        console.log(error);
        this.allProductDetails = [];
      });
+   }
+   updateInventory() {
+     this.httpClient.post('http://localhost/php/api/product_by_shop_details.php', {shop_id: this.shop_details.data.shop_id})
+       .subscribe(res => {
+         console.log(res);
+         this.data = res;
+       }, err => {
+         console.log(err);
+       });
    }
 }

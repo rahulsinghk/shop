@@ -21,6 +21,8 @@ import {SignupEmailValidationDirective} from './directives/signup-email-validati
 import {SignupShopNameValidationDirective} from './directives/signup-shop-name-validation.directive';
 import {SignupUsernameValidationDirective} from './directives/signup-username-validation.directive';
 import {SignupEqualPasswordValidationDirective} from './directives/signup-equal-password-validation.directive';
+import { AddOptionBottomSheetComponent } from './main/add-product-and-category/add-option-bottom-sheet/add-option-bottom-sheet.component';
+import { ViewProductDetailsComponent } from './main/view-product-details/view-product-details.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {SignupEqualPasswordValidationDirective} from './directives/signup-equal-
     SignupUsernameValidationDirective,
     SignupShopNameValidationDirective,
     SignupEmailValidationDirective,
-    SignupEqualPasswordValidationDirective
+    SignupEqualPasswordValidationDirective,
+    AddOptionBottomSheetComponent,
+    ViewProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,8 @@ import {SignupEqualPasswordValidationDirective} from './directives/signup-equal-
     FormsModule
   ],
   entryComponents: [
-    AddProductDialogComponent
+    AddProductDialogComponent,
+    AddOptionBottomSheetComponent
   ],
   providers: [
     DataService,
