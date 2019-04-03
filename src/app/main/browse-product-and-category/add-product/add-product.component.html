@@ -1,0 +1,18 @@
+<div class="row">
+    <div class=" col"  style="padding: 0 5px; margin-top: 4px; margin-bottom: 4px;">
+      <mat-card>
+        <mat-card-title>
+            Add New Product
+        </mat-card-title>
+        <mat-card-content>
+          <form #product="ngForm" (ngSubmit)="onSubmit(product)" enctype="multipart/form-data">
+            <mat-form-field>
+              <mat-label>Upload Images</mat-label>
+              <input matInput ngModel type="text" name="file">
+            </mat-form-field>
+            <button mat-button color="primary">Submit</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+</div>

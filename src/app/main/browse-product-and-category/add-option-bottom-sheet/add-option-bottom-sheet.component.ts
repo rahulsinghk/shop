@@ -11,9 +11,13 @@ export class AddOptionBottomSheetComponent implements OnInit {
   constructor(private bottomSheetRef: MatBottomSheetRef<AddOptionBottomSheetComponent>, @Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
 
   ngOnInit() {
+    this.bottomSheetRef.backdropClick().subscribe(r => {
+      console.log(r);
+      r.preventDefault();
+    });
   }
-  openLink(event: MouseEvent): void {
-    this.bottomSheetRef.dismiss('from bottom sheet');
+  onSelect(option: string): void {
+    this.bottomSheetRef.dismiss(option);
     event.preventDefault();
   }
 }

@@ -1,0 +1,35 @@
+<div class="row" style="padding-top: 3em; margin: 0;">
+  <div class="col" style="padding: 0">
+    <mat-toolbar  color="primary" class="header">
+      <div class="row justify-content-between align-items-center" style="width: 100%">
+        <div class="col-auto">
+          <button mat-button (click)="onAddItem()"><mat-icon>add</mat-icon>
+            &nbsp; Add Item
+          </button>
+        </div>
+      </div>
+    </mat-toolbar>
+  </div>
+</div>
+<div class="row" style=" margin: 0; position: absolute; bottom: 0; left: 0; right: 0; top: 6em; overflow: auto; background-color: #F8F8F8">
+  <div class="col" style=" overflow: auto;">
+    <div class="row" style="margin-top: 8px; margin-bottom: 8px;">
+      <div class="col" style="padding: 0 4px;">
+        <mat-card style="padding: 0 2em">
+          <mat-chip-list>
+            <mat-chip routerLink="viewCategory" (click) = "onReset()">All Category</mat-chip>
+            <ng-container *ngFor="let item of service.breadCrum; let index = index">
+              <mat-chip disabled class="chip-arrow" style="margin: 0;">
+                <mat-icon style="font-size: small; width: auto; height: auto;">arrow_forward_ios</mat-icon>
+              </mat-chip>
+              <mat-chip routerLink="viewCategory" (click)="onJump(index)">{{item.name}}</mat-chip>
+            </ng-container>
+          </mat-chip-list>
+        </mat-card>
+      </div>
+    </div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatDialog, MatPaginator, MatSort, MatTable, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog.component';
 import { Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
+import {HttpClient} from '@angular/common/http';
 interface FoodNode {
   name: string;
   children?: FoodNode[];
@@ -38,7 +39,12 @@ export class InventoryComponent implements OnInit {
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-  constructor(public dialog: MatDialog, private router: Router, private dataService: DataService) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private dataService: DataService,
+    private httpClient: HttpClient,
+    private snackBar: MatSnackBar) {
     TREE_DATA = this.dataService.data;
     this.dataSource.data = TREE_DATA;
     // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
@@ -80,16 +86,23 @@ export class InventoryComponent implements OnInit {
     this.table.renderRows();
     // console.log(this.table);
   }
+  onDelete(product) {
+    console.log(this.dataService.shop_details.data.shop_id);
+    console.log(product.product_id);
+    this.httpClient.post('http://localhost/php/api/write/delete_product.php',
+      {shop_id: this.dataService.shop_details.data.shop_id, product_id: product.product_id}).subscribe(res => {
+      console.log(res);
+      this.snackBar.open(res['message'], 'Dismiss', {
+        duration: 1000
+      });
+      this.dataService.updateInventory();
+      this.shop_details = this.dataService.shop_details;
+      TREE_DATA = this.dataService.data;
+      this.dataSource.data = TREE_DATA;
+    }, error => {
+      console.log(error);
+    });
+
+  }
 }
-// function createNewUser(id: number): UserData {
-//   const name =
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-//     NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-//
-//   return {
-//     id: id.toString(),
-//     name: name,
-//     progress: Math.round(Math.random() * 100).toString(),
-//     color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-//   };
-// }
+

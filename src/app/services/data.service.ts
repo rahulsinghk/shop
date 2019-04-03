@@ -235,7 +235,7 @@ export class DataService {
          ]
        }
      ];
-     this.httpClient.get('http://localhost/php/api/all_product_details.php').subscribe(response => {
+     this.httpClient.get('http://localhost/php/api/all_product.php').subscribe(response => {
        this.allProductDetails = response;
      }, error => {
        console.log(error);

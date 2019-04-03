@@ -4,10 +4,10 @@
       <button mat-button routerLink="inventory"><mat-icon>dashboard</mat-icon>
         &nbsp; Inventory Manage
       </button>
-      <button mat-button routerLink="addProduct"><mat-icon>library_add</mat-icon> &nbsp; Browse Category</button>
+      <button mat-button routerLink="browse"><mat-icon>library_add</mat-icon> &nbsp; Browse Category</button>
     </div>
     <div class="col-auto">
-      <button mat-button [matMenuTriggerFor]="options">
+      <button mat-icon-button [matMenuTriggerFor]="options">
       <mat-icon>more_vert</mat-icon>
     </button>
       <mat-menu #options="matMenu">

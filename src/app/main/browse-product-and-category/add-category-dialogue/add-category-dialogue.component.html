@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Add New Category</h1>
+<div mat-dialog-content>
+  <!--<p>Category Name</p>-->
+<form #addCategory="ngForm">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label>Enter Category Name</mat-label>
+      <input matInput ngModel #category="ngModel" name="category" placeholder="Category" required [appAddCategoryValidationDirective] = "data">
+      <mat-error *ngIf="category.hasError('required')">Category Should Have Name</mat-error>
+      <mat-error *ngIf="category.hasError('parent')">{{category.getError('parent')}}</mat-error>
+      <mat-error *ngIf="category.hasError('children')">{{category.getError('children')}}</mat-error>
+    </mat-form-field>
+  <div class="row">
+    <div class="col-auto">
+      <button mat-button type="submit" (click)="onSubmit(addCategory)" color="primary">Submit</button>
+      <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Cancel</button>
+    </div>
+  </div>
+</form>
+</div>
+
+

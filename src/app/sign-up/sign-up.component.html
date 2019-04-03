@@ -87,7 +87,10 @@
           <textarea ngModel #shopAddress="ngModel" matInput placeholder="Shop Address" name="shopAddress" required></textarea>
           <mat-error *ngIf="shopAddress.hasError('required')">Shop Address Is Required</mat-error>
         </mat-form-field>
-        <div class="row justify-content-end">
+        <div class="row justify-content-between">
+          <div class="col-auto">
+            <button mat-button type="button" routerLink="/logIn" style="outline: 0" color="primary">Sign in instead </button>
+          </div>
           <div class="col-auto">
             <div class="row justify-content-end">
               <div class="col-auto">

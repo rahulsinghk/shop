@@ -11,7 +11,6 @@ import {MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material';
 import { MainComponent } from './main/main.component';
 import {AddProductDialogComponent} from './main/inventory/add-product-dialog/add-product-dialog.component';
 import {InventoryComponent} from './main/inventory/inventory.component';
-import {AddProductAndCategoryComponent} from './main/add-product-and-category/add-product-and-category.component';
 import {DataService} from './services/data.service';
 import {FormsModule} from '@angular/forms';
 import {ValidationServices} from './services/validation.services';
@@ -21,10 +20,7 @@ import {SignupEmailValidationDirective} from './directives/signup-email-validati
 import {SignupShopNameValidationDirective} from './directives/signup-shop-name-validation.directive';
 import {SignupUsernameValidationDirective} from './directives/signup-username-validation.directive';
 import {SignupEqualPasswordValidationDirective} from './directives/signup-equal-password-validation.directive';
-import { AddOptionBottomSheetComponent } from './main/add-product-and-category/add-option-bottom-sheet/add-option-bottom-sheet.component';
 import { ViewProductDetailsComponent } from './main/view-product-details/view-product-details.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +28,6 @@ import { ViewProductDetailsComponent } from './main/view-product-details/view-pr
     SignUpComponent,
     InventoryComponent,
     AddProductDialogComponent,
-    AddProductAndCategoryComponent,
     MainComponent,
     LoginPasswordValidationDirective,
     LoginUsernameValidationDirective,
@@ -40,8 +35,7 @@ import { ViewProductDetailsComponent } from './main/view-product-details/view-pr
     SignupShopNameValidationDirective,
     SignupEmailValidationDirective,
     SignupEqualPasswordValidationDirective,
-    AddOptionBottomSheetComponent,
-    ViewProductDetailsComponent
+    ViewProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +46,7 @@ import { ViewProductDetailsComponent } from './main/view-product-details/view-pr
     FormsModule
   ],
   entryComponents: [
-    AddProductDialogComponent,
-    AddOptionBottomSheetComponent
+    AddProductDialogComponent
   ],
   providers: [
     DataService,
