@@ -12,14 +12,11 @@ import {AbstractControl, NG_VALIDATORS, Validator} from '@angular/forms';
 
 export class AddCategoryValidationDirective implements Validator {
 
-  @Input() appAddCategoryValidationDirective: {
-    parent: object,
-    children: Array<string>
-  };
+  @Input() appAddCategoryValidationDirective;
   validate(control: AbstractControl): {[key: string]: string} | null {
-    if (this.appAddCategoryValidationDirective.parent.name === control.value) {
+    if (this.appAddCategoryValidationDirective.parent.name === control.value.trim().replace(/ +/g, ' ')) {
       return {parent: 'Category Name Cannot Equal to Parent Category'};
-    } else if (this.appAddCategoryValidationDirective.children.includes(control.value)) {
+    } else if (this.appAddCategoryValidationDirective.children.includes(control.value.trim().replace(/ +/g, ' '))) {
       return {children: 'Category Already Exist'};
     } return null;
   }
