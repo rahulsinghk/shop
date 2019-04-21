@@ -9,7 +9,7 @@
       </div>
       <br>
       <form id="login" class="signin" #loginForm = "ngForm" (ngSubmit)="onSubmit(loginForm)">
-        <mat-form-field [style.fontSize.px]="14" appearance="outline" class="username">
+          <mat-form-field [style.fontSize.px]="14" appearance="outline" class="username">
           <mat-label>Enter Your UserName</mat-label>
           <input matInput ngModel appAsyncLoginUsernameValidation
                  [ngModelOptions]="{updateOn: 'blur'}"

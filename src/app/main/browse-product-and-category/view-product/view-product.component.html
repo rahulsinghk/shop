@@ -5,7 +5,7 @@
           <div class="row">
             <div class="col-6">
               <div>
-                <img src="../../../assets/images/product_images/{{viewProduct.image_name}}" style="float: left; width: 100%;" alt="{{viewProduct.product_name}}">
+                <img [src]="viewProduct.image_name" style="float: left; width: 100%;" alt="{{viewProduct.product_name}}">
               </div>
             </div>
             <div class="col-6">
@@ -18,9 +18,9 @@
                 </p>
               </mat-card-content>
               <mat-card-title style="margin-top: 0; margin-bottom: 0;">&#8377; {{viewProduct.product_price}}</mat-card-title>
-              <mat-card-subtitle>&#8377; 200 off</mat-card-subtitle>
+              <mat-card-subtitle><span class="text-danger">&#8377; 200 off</span></mat-card-subtitle>
               <mat-card-content>
-                <p style="margin-right: 4px;">
+                <p style="margin-right: 4px; overflow: hidden;  text-overflow: ellipsis;">
                   {{viewProduct.product_description}}
                 </p>
               </mat-card-content>
@@ -40,49 +40,63 @@
                     Specification
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <div class="row">
-                  <div class="col">
-                    <div class="row justify-content-center align-items-center" matRipple style="padding: 16px;">
-                      <div class="col-auto">
-                        <span class="text-muted">Sales Package</span>
-                      </div>
-                      <div class="col">
-                        <span>Laptop, Battery, Power Adaptor, User Guide, Warranty Documents</span>
-                      </div>
-                    </div>
 
-                    <div class="row justify-content-center align-items-center" matRipple style="padding: 16px;">
-                      <div class="col-auto">
-                        <span  class="text-muted">Model Number</span>
-                      </div>
-                      <div class="col">
-                        <span>PH315-51 / PH315-51-51V7</span>
-                      </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                      <ng-container *ngFor="let item of specificationKeys; let index = index">
+                        <ng-container *ngIf="index%2">
+                          <div class="row justify-content-center" matRipple style="padding: 8px;">
+                            <div class="col-4">
+                              <span  class="text-muted">{{item}}</span>
+                            </div>
+                            <div class="col">
+                              <span>{{specification[item].toString()}}</span>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
                     </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
-                    <div class="row justify-content-center align-items-center" matRipple style="padding: 16px;">
-                      <div class="col-auto">
-                        <span  class="text-muted">Part Number</span>
-                      </div>
-                      <div class="col">
-                        <span>NH.Q3HSI.014</span>
-                      </div>
+                      <ng-container *ngFor="let item of specificationKeys; let index = index">
+                        <ng-container *ngIf="!index%2">
+                          <div class="row justify-content-center" matRipple style="padding: 8px;">
+                            <div class="col-4">
+                              <span  class="text-muted">{{item}}</span>
+                            </div>
+                            <div class="col">
+                              <span>{{specification[item].toString()}}</span>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </ng-container>
                     </div>
                   </div>
-                </div>
+
 
               </mat-expansion-panel>
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                   (closed)="panelOpenState = false">
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Description
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+
+                {{viewProduct.product_description}}
+
+              </mat-expansion-panel>
+              <mat-expansion-panel>
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Available On Shops
                   </mat-panel-title>
-                  <mat-panel-description>
-                    Currently I am {{panelOpenState ? 'open' : 'closed'}}
-                  </mat-panel-description>
+
                 </mat-expansion-panel-header>
-                <p>I'm visible because I am open</p>
+                <div class="row" *ngFor="let item of shopList" style="padding: 10px 0">
+                  <div class="col-1">{{item.shop_name}}</div>
+                  <div class="col">{{item.shop_location}}</div>
+                  <div class="col-3">{{item.shopkeeper_email}}</div>
+                </div>
               </mat-expansion-panel>
             </mat-accordion>
 

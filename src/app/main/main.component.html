@@ -7,13 +7,30 @@
       <button mat-button routerLink="browse"><mat-icon>library_add</mat-icon> &nbsp; Browse Category</button>
     </div>
     <div class="col-auto">
-      <button mat-icon-button [matMenuTriggerFor]="options">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-      <mat-menu #options="matMenu">
-        <button mat-menu-item><mat-icon>account_circle</mat-icon>Account</button>
-        <button mat-menu-item (click)="onLogout()"><mat-icon>exit_to_app</mat-icon>Log Out</button>
-      </mat-menu>
+      <div class="row">
+        <div class="col-auto" style="padding: 0;">
+          <button mat-button [matMenuTriggerFor]="contact">
+            Contact Us
+          </button>
+          <mat-menu #contact="matMenu">
+            <button mat-menu-item ngxClipboard [cbContent]="'raskushwaha8@gmail.com'" (cbOnSuccess)="copySuccess($event)" (cbOnError)="copyFail($event)">
+              <mat-icon>email</mat-icon>raskushwaha8@gmail.com
+            </button>
+            <button mat-menu-item ngxClipboard [cbContent]="'9986346285'" (cbOnSuccess)="copySuccess($event)" (cbOnError)="copyFail($event)">
+              <mat-icon>phone</mat-icon>*91 9986346285
+            </button>
+          </mat-menu>
+        </div>
+        <div class="col-auto" style="padding: 0;">
+          <button mat-icon-button [matMenuTriggerFor]="options">
+            <mat-icon>more_horiz</mat-icon>
+          </button>
+          <mat-menu #options="matMenu">
+            <button mat-menu-item><mat-icon>account_circle</mat-icon>Account</button>
+            <button mat-menu-item (click)="onLogout()"><mat-icon>exit_to_app</mat-icon>Log Out</button>
+          </mat-menu>
+        </div>
+      </div>
     </div>
   </div>
 </mat-toolbar>

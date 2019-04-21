@@ -1,17 +1,127 @@
 <div class="row">
     <div class=" col"  style="padding: 0 5px; margin-top: 4px; margin-bottom: 4px;">
       <mat-card>
-        <mat-card-title>
+        <mat-card-title style="text-align:center;">
+          <h3>
             Add New Product
+          </h3>
         </mat-card-title>
         <mat-card-content>
-          <form #product="ngForm" (ngSubmit)="onSubmit(product)" enctype="multipart/form-data">
-            <mat-form-field>
-              <mat-label>Upload Images</mat-label>
-              <input matInput ngModel type="text" name="file">
-            </mat-form-field>
-            <button mat-button color="primary">Submit</button>
-          </form>
+
+<div class="container" style="padding-top: 10px;">
+
+
+              <form #product="ngForm" (click)="onSubmit(product)" enctype="multipart/form-data">
+                <div class="row justify-content-center">
+                  <div class="col-6">
+                    <div class="row" *ngIf="!src && touched">
+                      <div class="col">
+                        <div class="alert alert-danger" role="alert">
+                          Please Upload Image of Product
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" *ngIf="error">
+                      <div class="col">
+                        <div class="alert alert-danger" role="alert">
+                          Image should be of type jpg, jpeg, png and of size less than 5mb
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <input hidden #imgFileInput ngModel type="file" name="file" (change)="onUpload($event)" accept="image/jpeg, image/png">
+                        <div style="height: 400px; width: 100%; background-color: #D0D0D0; cursor: pointer" (click)="imgFileInput.click()">
+                          <ng-container *ngIf="!src">
+                            <div class="row justify-content-center align-items-center"  style="width: 100%; height: 100%;">
+                              <div class="col-auto">
+                                <h4 class="text-light">Add Image</h4>
+                              </div>
+                            </div>
+                          </ng-container>
+                          <ng-container *ngIf="src">
+                            <img [src]="src" #uplodeImage style="width:100%; height:100%">
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col">
+                        <mat-form-field appearance="outline"  style="width: 100%">
+                          <mat-label>Enter Product Name</mat-label>
+                          <input matInput ngModel type="text" placeholder="Name" required name="name">
+                          <mat-error>Name Is Required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-6">
+                        <mat-form-field appearance="outline"  style="width: 100%">
+                          <mat-label>Enter Product Brand</mat-label>
+                          <input matInput ngModel type="text" placeholder="Brand" required name="brand">
+                          <mat-error>Brand Is Required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field appearance="outline"  style="width: 100%">
+                          <mat-label>Enter Product Price</mat-label>
+                          <input matInput ngModel type="number" placeholder="Price" required name="price">
+                          <mat-error>Price Is Required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <mat-form-field appearance="outline"  style="width: 100%">
+                          <mat-label>Description</mat-label>
+                          <textarea matInput ngModel type="text" placeholder="Write Description About the Product" name="description" required></textarea>
+                          <mat-error>Description Is Required</mat-error>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row justify-content-between align-items-center" style="margin-bottom: 8px;">
+                      <div class="col-auto text-muted">
+                        <h5>Specification</h5>
+                      </div>
+                      <div class="col-auto">
+                        <button mat-stroked-button color="primary" style="margin: 4px;" (click)="onAdd(product)" type="button">
+                          <mat-icon style="font-size: 20px">add</mat-icon> Add
+                        </button>
+                        <button mat-stroked-button color="warn" style="margin: 4px;" (click)="onRemove()" type="button">
+                          <mat-icon style="font-size: 20px">remove</mat-icon> Remove
+                        </button>
+                      </div>
+                    </div>
+                    <div ngModelGroup="specification">
+                      <div class="row" *ngFor="let item of specification; let last = last" [ngModelGroup]="'spec'+item">
+                        <div class="col-6">
+                          <mat-form-field appearance="outline"  style="width: 100%">
+                            <mat-label>Specification Name</mat-label>
+                            <input matInput ngModel type="text" placeholder="Name" name="spec_name" required>
+                            <mat-error>Specification Name Is Required</mat-error>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                          <mat-form-field appearance="outline"  style="width: 100%">
+                            <mat-label>Specification Value</mat-label>
+                            <input matInput ngModel type="text" placeholder ="Value" name="spec_value" required>
+                            <mat-error>Specification Value Is Required</mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row justify-content-end">
+                      <div class="col-auto">
+                        <button mat-raised-button type="submit" color="primary">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+</div>
+
         </mat-card-content>
       </mat-card>
     </div>

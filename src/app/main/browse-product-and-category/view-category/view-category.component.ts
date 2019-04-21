@@ -11,16 +11,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./view-category.component.css']
 })
 export class ViewCategoryComponent implements OnInit {
-  private service: SharedBrowseProductAndCategoryService;
+  // private service: SharedBrowseProductAndCategoryService;
 
   constructor(
-    private sharedBrowseProductAndCategoryService: SharedBrowseProductAndCategoryService,
+    private service: SharedBrowseProductAndCategoryService,
     private dataService: DataService,
     private httpClient: HttpClient,
     private snackBar: MatSnackBar,
     private router: Router,
   ) {
-    this.service = this.sharedBrowseProductAndCategoryService;
   }
 
   ngOnInit() {
@@ -45,16 +44,15 @@ export class ViewCategoryComponent implements OnInit {
     this.router.navigate(['/main/browse/viewProduct']);
   }
   onSelect(index: number) {
-    // console.log(this.data);
-    this.service.breadCrum.push({id: index, name:  this.service.productCategory[index].name, category_type_id_child: this.service.productCategory[index].category_type_id_child});
-    // console.log(this.service.productCategory[index]);
+    this.service.breadCrum.push({index: index, name:  this.service.productCategory[index].name, category_type_id_child: this.service.productCategory[index].category_type_id_child, category_index_id: this.service.productCategory[index].index_id,});
     if (this.service.productCategory[index].children.length === 0 && this.service.productCategory[index].products.length === 0) {
-      this.service.productCategory = [];
-      this.service.productList = [];
+      console.log(this.service.productCategory[index]);
+      this.service.productCategory = this.service.productCategory[index].children;
+      this.service.productList = this.service.productCategory[index].products;
     } else if (this.service.productCategory[index].children.length === 0) {
       this.service.productList = this.service.productCategory[index].products;
       // console.log(this.service.productList);
-      this.service.productCategory = [];
+      this.service.productCategory = this.service.productCategory[index].children;
     } else {
       this.service.productCategory = this.service.productCategory[index].children;
       this.service.productList = [];

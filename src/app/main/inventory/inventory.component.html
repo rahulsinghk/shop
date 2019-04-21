@@ -178,7 +178,7 @@
                               <mat-icon>more_horiz</mat-icon>
                             </button>
                             <mat-menu #options="matMenu">
-                              <button mat-menu-item><mat-icon>view_carousel</mat-icon>View</button>
+                              <button mat-menu-item (click)="onView(row)"><mat-icon>view_carousel</mat-icon>View</button>
                               <button mat-menu-item (click)="onDelete(row)"><mat-icon>delete</mat-icon>Delete</button>
                             </mat-menu>
                           </td>

@@ -3,7 +3,7 @@ import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {NestedTreeControl} from '@angular/cdk/tree';
 import {MatDialog, MatPaginator, MatSnackBar, MatSort, MatTable, MatTableDataSource} from '@angular/material';
 import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog.component';
-import { Router} from '@angular/router';
+import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
 import {HttpClient} from '@angular/common/http';
 interface FoodNode {
@@ -44,12 +44,13 @@ export class InventoryComponent implements OnInit {
     private router: Router,
     private dataService: DataService,
     private httpClient: HttpClient,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute) {
+    console.log(this.activatedRoute.snapshot.routeConfig.path);
     TREE_DATA = this.dataService.data;
     this.dataSource.data = TREE_DATA;
     // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
    const users = [
-
     ];
     // Assign the data to the data source for the table to render
     this.data = new MatTableDataSource(users);
@@ -103,6 +104,10 @@ export class InventoryComponent implements OnInit {
       console.log(error);
     });
 
+  }
+  onView(product) {
+    this.dataService.viewProduct = product;
+    this.router.navigate(['main/viewProductDetails']);
   }
 }
 

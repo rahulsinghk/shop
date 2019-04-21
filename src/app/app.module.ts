@@ -21,6 +21,10 @@ import {SignupShopNameValidationDirective} from './directives/signup-shop-name-v
 import {SignupUsernameValidationDirective} from './directives/signup-username-validation.directive';
 import {SignupEqualPasswordValidationDirective} from './directives/signup-equal-password-validation.directive';
 import { ViewProductDetailsComponent } from './main/view-product-details/view-product-details.component';
+import {ClipboardModule} from 'ngx-clipboard';
+import {RouteReuseStrategy} from '@angular/router';
+import {CustomRouteReuse} from './main/route-reuse/custom-route-reuse';
+import { AccountComponent } from './main/account/account.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,7 @@ import { ViewProductDetailsComponent } from './main/view-product-details/view-pr
     SignupEmailValidationDirective,
     SignupEqualPasswordValidationDirective,
     ViewProductDetailsComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,8 @@ import { ViewProductDetailsComponent } from './main/view-product-details/view-pr
     AngularMaterialModules,
     RouterModules,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ClipboardModule
   ],
   entryComponents: [
     AddProductDialogComponent
@@ -51,7 +57,8 @@ import { ViewProductDetailsComponent } from './main/view-product-details/view-pr
   providers: [
     DataService,
     ValidationServices,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true, disableClose: true}},
+    {provide: RouteReuseStrategy, useClass: CustomRouteReuse}
   ],
   bootstrap: [AppComponent]
 })

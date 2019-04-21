@@ -5,7 +5,7 @@
         <mat-card-header>
           <mat-card-title>{{product.product_brand}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src="../../../assets/images/product_images/{{product.image_name}}" style="width: 370px; height: 280px;" alt=" {{product.product_name}}">
+        <img mat-card-image [src]="product.image_name" style="width: 370px; height: 280px;" alt=" {{product.product_name}}">
         <mat-card-content style="margin-top: 0; font-size: large; margin-bottom: 0; max-height: 50px; min-height: 50px; overflow: hidden;">
           <p class="text-muted">
             {{product.product_name}}
@@ -13,7 +13,7 @@
           </p>
         </mat-card-content>
         <mat-card-title style="margin-top: 0; margin-bottom: 0;">&#8377; {{product.product_price}}</mat-card-title>
-        <mat-card-subtitle>&#8377; 200 off</mat-card-subtitle>
+        <mat-card-subtitle><span class="text-info">&#8377; 200 off</span></mat-card-subtitle>
         <mat-card-content style="max-height: 104px; min-height: 104px; overflow: auto;">
           <p style="margin-right: 4px;">
             {{product.product_description}}

@@ -22,7 +22,7 @@ export class AddCategoryDialogueComponent implements OnInit {
   onSubmit(form: NgForm): void {
     console.log(this.data);
     if (form.valid) {
-      console.log(form);
+      // console.log(form);
       this.dialogRef.close(form.value);
     }
   }
