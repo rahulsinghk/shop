@@ -6,18 +6,19 @@ import {AddProductDialogComponent} from './add-product-dialog/add-product-dialog
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
 import {HttpClient} from '@angular/common/http';
-interface FoodNode {
+interface ProductCategory {
   name: string;
-  children?: FoodNode[];
+  children?: ProductCategory[];
 }
-export interface UserData {
+
+export interface Product {
   product_id: number;
   product_name: string;
   product_price: number;
   product_brand: string;
 }
 
-let TREE_DATA: FoodNode[];
+let TREE_DATA: ProductCategory[];
 
 @Component({
   selector: 'app-inventory',
@@ -29,85 +30,100 @@ export class InventoryComponent implements OnInit {
   name: string;
   private shop_details;
 
-  displayedColumns: string[] = ['id', 'name', 'price', 'brand', 'action'];
-  data: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['product_id', 'product_name', 'product_price', 'product_brand', 'action'];
+  tableData: MatTableDataSource<Product>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<UserData>;
+  @ViewChild(MatTable) table: MatTable<Product>;
 
-  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
-  dataSource = new MatTreeNestedDataSource<FoodNode>();
-
+  treeControl = new NestedTreeControl<ProductCategory>(node => node.children);
+  treeDataSource = new MatTreeNestedDataSource<ProductCategory>();
+  private tableContent;
   constructor(
     public dialog: MatDialog,
     private router: Router,
     private dataService: DataService,
     private httpClient: HttpClient,
-    private snackBar: MatSnackBar,
-    private activatedRoute: ActivatedRoute) {
-    console.log(this.activatedRoute.snapshot.routeConfig.path);
-    TREE_DATA = this.dataService.data;
-    this.dataSource.data = TREE_DATA;
-    // const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
-   const users = [
-    ];
-    // Assign the data to the data source for the table to render
-    this.data = new MatTableDataSource(users);
+    private snackBar: MatSnackBar) {
+    this.dataService.updateInventory()
+      .subscribe(response => {
+        console.log(response);
+        this.dataService.data = response;
+        TREE_DATA = this.dataService.data;
+        this.treeDataSource.data = TREE_DATA;
+      }, err => {
+        console.log(err);
+      });
   }
 
-  // dialog
+  ngOnInit() {
+    this.shop_details = this.dataService.shop_details;
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProductDialogComponent, {
       width: '250px',
       data: {name: this.name, animal: this.animal}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.animal = result;
     });
   }
 
-  ngOnInit() {
-    this.shop_details = this.dataService.shop_details;
-    this.data.paginator = this.paginator;
-    this.data.sort = this.sort;
-  }
-  applyFilter(filterValue: string) {
-    this.data.filter = filterValue.trim().toLowerCase();
-
-    if (this.data.paginator) {
-      this.data.paginator.firstPage();
-    }
-  }
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
-  onClickLeaf(node) {
-    this.data = new MatTableDataSource(node.products);
-    this.table.renderRows();
-    // console.log(this.table);
-  }
   onDelete(product) {
     console.log(this.dataService.shop_details.data.shop_id);
     console.log(product.product_id);
     this.httpClient.post('http://localhost/php/api/write/delete_product.php',
       {shop_id: this.dataService.shop_details.data.shop_id, product_id: product.product_id}).subscribe(res => {
-      console.log(res);
-      this.snackBar.open(res['message'], 'Dismiss', {
-        duration: 1000
-      });
-      this.dataService.updateInventory();
-      this.shop_details = this.dataService.shop_details;
-      TREE_DATA = this.dataService.data;
-      this.dataSource.data = TREE_DATA;
+        console.log(res);
+        const index = this.tableContent.indexOf(product);
+        if (index > -1) {
+          this.tableContent.splice(index, 1);
+        }
+        this.updateTable(this.tableContent);
+        this.snackBar.open(res['message'], 'Dismiss', {
+          duration: 1000
+        });
+        this.dataService.updateInventory()
+          .subscribe(response => {
+            console.log(response);
+            this.dataService.data = response;
+            TREE_DATA = this.dataService.data;
+            this.treeDataSource.data = TREE_DATA;
+          }, err => {
+            console.log(err);
+          });
+        this.shop_details = this.dataService.shop_details;
     }, error => {
       console.log(error);
     });
-
   }
+
   onView(product) {
+    console.log(product);
     this.dataService.viewProduct = product;
-    this.router.navigate(['main/viewProductDetails']);
+    this.router.navigate(['main/viewProductDetails']).then();
+  }
+
+  updateTable(productList) {
+    this.tableData = new MatTableDataSource(productList);
+    this.tableData.paginator = this.paginator;
+    this.tableData.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.tableData.filter = filterValue.trim().toLowerCase();
+    if (this.tableData.paginator) {
+      this.tableData.paginator.firstPage();
+    }
+  }
+
+  hasChild = (_: number, node: ProductCategory) => !!node.children && node.children.length > 0;
+  onClickLeaf(node) {
+    this.tableContent = node.products;
+    this.updateTable(node.products);
   }
 }
 

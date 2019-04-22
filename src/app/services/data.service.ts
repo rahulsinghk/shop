@@ -243,12 +243,6 @@ export class DataService {
      });
    }
    updateInventory() {
-     this.httpClient.post('http://localhost/php/api/product_by_shop_details.php', {shop_id: this.shop_details.data.shop_id})
-       .subscribe(res => {
-         console.log(res);
-         this.data = res;
-       }, err => {
-         console.log(err);
-       });
+    return this.httpClient.post('http://localhost/php/api/product_by_shop_details.php', {shop_id: this.shop_details.data.shop_id});
    }
 }

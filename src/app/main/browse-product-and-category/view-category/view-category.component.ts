@@ -46,9 +46,10 @@ export class ViewCategoryComponent implements OnInit {
   onSelect(index: number) {
     this.service.breadCrum.push({index: index, name:  this.service.productCategory[index].name, category_type_id_child: this.service.productCategory[index].category_type_id_child, category_index_id: this.service.productCategory[index].index_id,});
     if (this.service.productCategory[index].children.length === 0 && this.service.productCategory[index].products.length === 0) {
-      console.log(this.service.productCategory[index]);
+      console.log(this.service.productCategory[index].products);
+      const temp = this.service.productCategory[index].products;
       this.service.productCategory = this.service.productCategory[index].children;
-      this.service.productList = this.service.productCategory[index].products;
+      this.service.productList = temp;
     } else if (this.service.productCategory[index].children.length === 0) {
       this.service.productList = this.service.productCategory[index].products;
       // console.log(this.service.productList);
